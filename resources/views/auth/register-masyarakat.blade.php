@@ -32,34 +32,90 @@
     <section>
         <div class="card position-absolute top-50 start-50 translate-middle p-4 shadow">
             <h1 class="mb-5 text-center">REGISTER ACCOUNT MASYARAKAT</h1>
-            <form action="">
+            <form action="{{ route('register.masyarakat') }}" method="POST">
+                @csrf
                 <div class="mb-3">
                     <label for="nik" class="form-label">NIK</label>
-                    <input type="text" class="form-control" id="nik" name="nik">
+                    <input 
+                        type="text" 
+                        class="form-control @error('nik') is-invalid @enderror" 
+                        id="nik" 
+                        name="nik"
+                    >
+                    @error('nik')
+                        <div class="text-danger col-12">
+                            <small>{{ $message }}</small>
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="telp" class="form-label">Nomor Telepon</label>
-                    <input type="text" class="form-control" id="telp" name="telp">
+                    <input 
+                        type="text" 
+                        class="form-control @error('telp') is-invalid @enderror" 
+                        id="telp" 
+                        name="telp"
+                    >
+                    @error('telp')
+                        <div class="text-danger col-12">
+                            <small>{{ $message }}</small>
+                        </div>
+                    @enderror
                 </div>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <input 
+                            type="text" 
+                            class="form-control @error('nama') is-invalid @enderror" 
+                            id="nama" 
+                            name="nama"
+                        >
+                        @error('nama')
+                            <div class="text-danger col-12">
+                                <small>{{ $message }}</small>
+                            </div>
+                        @enderror
                     </div>
                     <div class="col">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username">
+                        <input 
+                            type="text" 
+                            class="form-control @error('username') is-invalid @enderror" 
+                            id="username" 
+                            name="username"
+                        >
+                        @error('username')
+                            <div class="text-danger col-12">
+                                <small>{{ $message }}</small>
+                            </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password">
+                        <input 
+                            type="password" 
+                            class="form-control @error('password') is-invalid @enderror" 
+                            id="password" 
+                            name="password"
+                        >
                     </div>
                     <div class="col">
                         <label for="confirm_password" class="form-label">Confirm Password</label>
-                        <input type="confirm_password" class="form-control" id="confirm_password">
+                        <input 
+                            type="password" 
+                            class="form-control @error('password') is-invalid @enderror" 
+                            id="confirm_password" 
+                            name="confirm_password"
+                        >
                     </div>
+                    @error('password')
+                        <div class="text-danger col-12">
+                            <small>{{ $message }}</small>
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-primary d-block w-100 py-2">Submit</button>

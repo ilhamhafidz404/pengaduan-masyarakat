@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class masyarakat extends Model
+class Masyarakat extends Model
 {
     use HasFactory;
+    protected $table = 'masyarakat';
+    protected $fillable = ['nik', 'telp', 'nama', 'username', 'password'];
+    public $timestamps = false;
 }
