@@ -57,7 +57,7 @@
 
     <main class="container">
 
-        <a href="{{ route('masyarakat.create') }}" class="btn btn-primary">Tambah Laporan</a>
+        <a href="{{ route('masyarakat.create') }}" class="btn btn-primary my-5">Tambah Laporan</a>
 
         <table class="table table-striped table-hover">
             <thead>
@@ -71,12 +71,54 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
+                @forelse ($pengaduan as $index=>$item)
+                    <tr>
+                        <td>
+                            {{ $index+1 }}
+                        </td>
+                        <td scope="row">
+                            <img 
+                                class="img-thumbnail rounded" 
+                                src="{{ asset('storage/'.$item->foto) }}" 
+                                alt="Foto laporan ke-{{ $index+1 }}"
+                                style="width: 100px; height: 100px; object-fit: cover"
+                            >
+                        </td>
+                        <td class="position-relative">
+                            <div class="position-absolute top-50 translate-middle-y">
+                                {{ $item->tgl_pengaduan }}
+                            </div>
+                        </td>
+                        <td class="position-relative">
+                            <div class="position-absolute top-50 translate-middle-y">
+                                {{ $item->nik }}
+                            </div>
+                        </td>
+                        <td class="position-relative">
+                            <div class="position-absolute top-50 translate-middle-y">
+                                {{ $item->isi_laporan }}
+                            </div>
+                        </td>
+                        <td class="position-relative">
+                            <div class="position-absolute top-50 translate-middle-y">
+                                @if ($item->status == 'selesai')
+                                    <span class="badge text-bg-success">Ditanggapi</span>
+                                @elseif ($item->status == 'proses')
+                                    <span class="badge text-bg-warning">Dalam Proses</span>
+                                @else
+                                    <span class="badge text-bg-danger">Menuggu</span>
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <th colspan="6" class="text-center py-3">
+                            Belum ada data Laporan anda
+                        </th>
+                    </tr>
+                    
+                @endforelse
             </tbody>
         </table>
     </main>

@@ -9,7 +9,9 @@ class MasyarakatController extends Controller
 {
     public function index()
     {
-        return view('masyarakat.index');
+        return view('masyarakat.index', [
+            'pengaduan' => Pengaduan::whereNik('20220810052')->get()
+        ]);
     }
 
     public function create()
@@ -28,8 +30,8 @@ class MasyarakatController extends Controller
         Pengaduan::create([
             'tgl_pengaduan' => date('Y-m-d'),
             'nik' =>  $request->nik,
-            'isi_laporan' => $request->file('foto')->store('foto'),
-            'foto' => 'fewf',
+            'isi_laporan' => $request->isi,
+            'foto' => $request->file('foto')->store('foto'),
             'status' => '0'
         ]);
 
